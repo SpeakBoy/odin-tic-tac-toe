@@ -1,7 +1,10 @@
 class Player
-    def initialize(move_list)
+    def initialize(move_list, symbol)
         @move_list = move_list
+        @symbol = symbol
     end
+
+    attr_accessor :symbol
 
     def update_move_list(move)
         @move_list.push(move)
