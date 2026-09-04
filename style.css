@@ -3,3 +3,20 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+#board {
+    justify-self: center;
+    align-self: center;
+    border: 1em ridge burlywood;
+    width: 600px;
+    height: 600px;
+    display: grid;
+    gap: 5px;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    background-color: black;
+}
+
+#board div {
+    background-color: bisque;
+}
