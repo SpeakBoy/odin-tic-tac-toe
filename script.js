@@ -32,3 +32,8 @@ const gameBoard = (() => {
 
     return { getBoard, clearBoard, placeToken };
 })();
+
+function createPlayer(name, token)
+{
+    return { name, token };
+}
