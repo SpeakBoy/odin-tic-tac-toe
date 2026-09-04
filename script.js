@@ -105,6 +105,7 @@ const gameController = (() => {
 
     const resetGame = () => {
         gameBoard.clearBoard();
+        displayController.updateDisplay();
         activePlayer = playerOne;
         winner = null;
     };
@@ -124,7 +125,7 @@ const gameController = (() => {
             gameBoard.placeToken(row - 1, column - 1, activePlayer);
             winner = gameBoard.checkWinner(activePlayer);
             swtichActivePlayer();
-            gameBoard.printBoard();
+            displayController.updateDisplay();
         }
         else
         {
@@ -134,14 +135,12 @@ const gameController = (() => {
         if (isWinner())
         {
             console.log(`${winner.name} is the winner!`);
-            resetGame();
             return;
         }
 
         if (!gameBoard.areSquaresEmpty())
         {
             console.log("It's a tie!");
-            resetGame();
             return;
         }
 
@@ -152,4 +151,28 @@ const gameController = (() => {
     }
 
     return { resetGame, playRound }
+})();
+
+const displayController = (() => {
+    const boardDisplay = document.querySelector("#board");
+
+    const updateDisplay = () => {
+        const flattenedBoard = gameBoard.getBoard().flat();
+        for (let i = 0; i < boardDisplay.children.length; i++)
+        {
+            const cell = boardDisplay.children[i];
+            cell.textContent = flattenedBoard[i];
+            if (flattenedBoard[i] === "X")
+            {
+                cell.style.color = "red";
+            }
+            else if (flattenedBoard[i] === "O")
+            {
+                cell.style.color = "blue";
+            }
+
+        }
+    };
+
+    return { updateDisplay };
 })();

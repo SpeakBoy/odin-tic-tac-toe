@@ -19,4 +19,8 @@
 
 #board div {
     background-color: bisque;
+    display: grid;
+    place-items: center;
+    font-size: 150px;
+    font-weight: bold;
 }
