@@ -30,7 +30,7 @@ const gameBoard = (() => {
         }
         else
         {
-            console.log(`Unable to place token at row ${row + 1}, column ${column + 1}. The cell is already filled!`);
+            displayController.updateResultsDisplay(`Unable to place token at row ${row + 1}, column ${column + 1}. The cell is already filled!`);
         }
     };
 
@@ -110,7 +110,8 @@ const gameController = (() => {
 
     const resetGame = () => {
         gameBoard.clearBoard();
-        displayController.updateDisplay();
+        displayController.updateBoardDisplay();
+        displayController.updateResultsDisplay("");
         activePlayer = playerOne;
         winner = null;
     };
@@ -130,22 +131,23 @@ const gameController = (() => {
             gameBoard.placeToken(row - 1, column - 1, activePlayer);
             winner = gameBoard.checkWinner(activePlayer);
             swtichActivePlayer();
-            displayController.updateDisplay();
+            displayController.updateBoardDisplay();
+            displayController.updateResultsDisplay("");
         }
         else
         {
-            console.log("Row and column inputs must be between 1 and 3!");
+            displayController.updateResultsDisplay("Row and column inputs must be between 1 and 3!");
         }
 
         if (isWinner())
         {
-            console.log(`${winner.name} is the winner!`);
+            displayController.updateResultsDisplay(`${winner.name} is the winner!`);
             return;
         }
 
         if (!gameBoard.areSquaresEmpty())
         {
-            console.log("It's a tie!");
+            displayController.updateResultsDisplay("It's a tie!");
             return;
         }
 
@@ -161,8 +163,9 @@ const gameController = (() => {
 const displayController = (() => {
     const boardDisplay = document.querySelector("#board");
     const boardCells = document.querySelectorAll("#board div");
+    const resultsDisplay = document.querySelector("#results");
 
-    const updateDisplay = () => {
+    const updateBoardDisplay = () => {
         const flattenedBoard = gameBoard.getBoard().flat();
         for (let i = 0; i < boardDisplay.children.length; i++)
         {
@@ -178,6 +181,10 @@ const displayController = (() => {
             }
 
         }
+    };
+
+    const updateResultsDisplay = (result) => {
+        resultsDisplay.textContent = result;
     };
 
     let row = 1;
@@ -204,5 +211,5 @@ const displayController = (() => {
         }
     }
 
-    return { updateDisplay };
+    return { updateBoardDisplay, updateResultsDisplay };
 })();
