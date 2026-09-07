@@ -4,12 +4,26 @@
     box-sizing: border-box;
 }
 
+#container {
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+    align-items: center;
+    width: fit-content;
+    gap: 40px;
+    padding: 20px;
+}
+
+#player-names {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
 #board {
     justify-self: center;
     align-self: center;
     border: 1em ridge burlywood;
-    width: 600px;
-    height: 600px;
     display: grid;
     gap: 5px;
     grid-template-rows: repeat(3, 1fr);
@@ -23,4 +37,6 @@
     place-items: center;
     font-size: 150px;
     font-weight: bold;
+    width: 200px;
+    height: 200px;
 }
