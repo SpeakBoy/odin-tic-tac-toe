@@ -104,9 +104,11 @@ const gameController = (() => {
     let winner = null;
     const playerOneName = document.querySelector("#player-one-name");
     const playerTwoName = document.querySelector("#player-two-name");
+    const resetButton = document.querySelector("#reset");
 
     playerOneName.addEventListener("change", (e) => playerOne.name = e.target.value);
     playerTwoName.addEventListener("change", (e) => playerTwo.name = e.target.value);
+    resetButton.addEventListener("click", () => resetGame());
 
     const resetGame = () => {
         gameBoard.clearBoard();
@@ -157,7 +159,7 @@ const gameController = (() => {
         return winner !== null;
     }
 
-    return { resetGame, playRound }
+    return { playRound }
 })();
 
 const displayController = (() => {
