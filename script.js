@@ -155,6 +155,7 @@ const gameController = (() => {
 
 const displayController = (() => {
     const boardDisplay = document.querySelector("#board");
+    const boardCells = document.querySelectorAll("#board div");
 
     const updateDisplay = () => {
         const flattenedBoard = gameBoard.getBoard().flat();
@@ -173,6 +174,30 @@ const displayController = (() => {
 
         }
     };
+
+    let row = 1;
+    let column = 1;
+    for (const cell of boardCells)
+    {
+        const cellRow = row;
+        const cellColumn = column;
+        cell.addEventListener("click", (e) => {
+            if (e.target.textContent === "")
+            {
+                gameController.playRound(cellRow, cellColumn);
+            }
+        });
+
+        if (column === gameBoard.getRows())
+        {
+            row++;
+            column = 1;
+        }
+        else
+        {
+            column++;
+        }
+    }
 
     return { updateDisplay };
 })();
