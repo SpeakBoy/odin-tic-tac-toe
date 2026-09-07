@@ -102,6 +102,11 @@ const gameController = (() => {
     const playerTwo = createPlayer("p2", "O");
     let activePlayer = playerOne;
     let winner = null;
+    const playerOneName = document.querySelector("#player-one-name");
+    const playerTwoName = document.querySelector("#player-two-name");
+
+    playerOneName.addEventListener("change", (e) => playerOne.name = e.target.value);
+    playerTwoName.addEventListener("change", (e) => playerTwo.name = e.target.value);
 
     const resetGame = () => {
         gameBoard.clearBoard();
